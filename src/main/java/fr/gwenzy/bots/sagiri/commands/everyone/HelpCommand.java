@@ -3,6 +3,7 @@ package fr.gwenzy.bots.sagiri.commands.everyone;
 import fr.gwenzy.bots.sagiri.ReformedSagiri;
 import fr.gwenzy.bots.sagiri.commands.Command;
 import fr.gwenzy.bots.sagiri.exceptions.*;
+import fr.gwenzy.bots.sagiri.ressources.Tokens;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 import sx.blah.discord.handle.obj.IChannel;
 import sx.blah.discord.handle.obj.IRole;
@@ -114,7 +115,7 @@ public class HelpCommand extends Command {
                             eb.appendField(cmd.getHelpTitle()+(!cmd.getEnabled()?"♦DISABLED♦":""), content, false);
 
                     }
-
+                eb.withFooterText(Tokens.getGithubLink());
                 event.getChannel().sendMessage(eb.build());
 
             }

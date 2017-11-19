@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by gwend on 14/11/2017.
  */
-public class Command implements IListener<MessageReceivedEvent>{
+public abstract class Command implements IListener<MessageReceivedEvent>{
     private String name, prefix, help_title, help_content;
     private List<String> aliases, authorizedGroups, authorizedClients, forcedChannels, forbidenChannels, neededArgs, facultativeArgs;
     private boolean acceptPrivate, acceptChannel, needVoice, enabled;

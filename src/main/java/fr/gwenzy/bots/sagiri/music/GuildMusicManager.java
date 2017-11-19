@@ -118,4 +118,9 @@ public class GuildMusicManager {
     public void setSneakyMode(boolean sneakyMode) {
         this.sneakyMode = sneakyMode;
     }
+
+    public void stop() {
+      this.player.stopTrack();
+      this.scheduler.clear();
+    }
 }
