@@ -123,4 +123,8 @@ public class GuildMusicManager {
       this.player.stopTrack();
       this.scheduler.clear();
     }
+
+    public void next(){
+      this.scheduler.nextTrack();
+    }
 }
