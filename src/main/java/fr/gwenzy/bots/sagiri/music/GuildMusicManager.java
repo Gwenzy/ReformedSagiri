@@ -5,6 +5,8 @@ import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import fr.gwenzy.bots.sagiri.ReformedSagiri;
 import sx.blah.discord.handle.obj.IGuild;
+import sx.blah.discord.handle.obj.IUser;
+import sx.blah.discord.handle.obj.IVoiceChannel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +20,7 @@ public class GuildMusicManager {
    * Audio player for the guild.
    */
   private final AudioPlayer player;
-  private int nextCount;
+  private List<Long> nextCount;
   private AudioTrack currentTrack;
   private long currentAuthor;
   private List<Long> authors;
@@ -41,7 +43,7 @@ public class GuildMusicManager {
     authors = new ArrayList<>();
     lastSearches = new HashMap<>();
     this.sneakyMode = false;
-    nextCount = 0;
+    nextCount = new ArrayList<>();
   }
 
   public void addAuthor(long ID){
@@ -101,7 +103,7 @@ public class GuildMusicManager {
 
   public void newTrack(AudioTrack track) {
     this.currentTrack = track;
-    this.nextCount = 0;
+    this.nextCount = new ArrayList<>();
     this.currentAuthor = this.authors.get(0);
     this.authors.remove(0);
 
@@ -122,5 +124,36 @@ public class GuildMusicManager {
     public void stop() {
       this.player.stopTrack();
       this.scheduler.clear();
+    }
+
+    public void next(){
+      this.scheduler.nextTrack();
+    }
+
+    public boolean askNext(long id, IVoiceChannel channel){
+      if(!this.nextCount.contains(id))
+        this.nextCount.add(id);
+
+      int pplWantToSkip = 0;
+      for(IUser user : channel.getUsersHere()){
+        if(this.nextCount.contains(user.getLongID()))
+          pplWantToSkip++;
+      }
+
+      if((double)pplWantToSkip/(channel.getUsersHere().size()-1)>=0.5){
+        this.next();
+        return true;
+      }
+      return false;
+    }
+
+    public int getWantToSkip(IVoiceChannel channel){
+      int pplWantToSkip = 0;
+      for(IUser user : channel.getUsersHere()){
+        if(this.nextCount.contains(user.getLongID()))
+          pplWantToSkip++;
+      }
+
+      return pplWantToSkip;
     }
 }

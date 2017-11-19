@@ -18,7 +18,7 @@ import sx.blah.discord.handle.obj.IUser;
 public class ReformedSagiri {
     public static IDiscordClient sagiri, test, logged;
     public static CommandManager cm;
-    public static boolean SAGIRI_LOG = true;
+    public static boolean SAGIRI_LOG = false;
     public static final String GLOBAL_PREFIX = SAGIRI_LOG?">":"!";
 
     public static void main(String[] args){
@@ -35,9 +35,11 @@ public class ReformedSagiri {
         cm.registerCommand(new JoinCommand("join", GLOBAL_PREFIX, true));
         cm.registerCommand(new SneakyCommand("sneaky", GLOBAL_PREFIX, true));
         cm.registerCommand(new VolumeCommand("volume", GLOBAL_PREFIX, true));
+        cm.registerCommand(new ForcenextCommand("forcenext", GLOBAL_PREFIX, true));
         cm.registerCommand(new DevCommand("dev", GLOBAL_PREFIX, true));
         cm.registerCommand(new FastplayCommand("fastplay", GLOBAL_PREFIX, true));
         cm.registerCommand(new PlayCommand("play", GLOBAL_PREFIX, true));
+        cm.registerCommand(new NextCommand("next", GLOBAL_PREFIX, true));
         cm.registerCommand(new SearchCommand("search", GLOBAL_PREFIX, true));
         cm.registerCommand(new InfosCommand("info", GLOBAL_PREFIX, true));
         cm.registerCommand(new QueueCommand("queue", GLOBAL_PREFIX, true));

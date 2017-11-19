@@ -16,6 +16,7 @@ public class StopCommand extends Command{
         super(name, prefix, enabled);
         this.addAuthorizedGroup("Sagiri operator");
         this.setHelpContent("Stop and clear the queue");
+        this.setNeedVoice(true);
     }
 
     @Override
