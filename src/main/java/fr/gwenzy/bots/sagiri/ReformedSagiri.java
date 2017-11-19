@@ -35,10 +35,11 @@ public class ReformedSagiri {
         cm.registerCommand(new JoinCommand("join", GLOBAL_PREFIX, true));
         cm.registerCommand(new SneakyCommand("sneaky", GLOBAL_PREFIX, true));
         cm.registerCommand(new VolumeCommand("volume", GLOBAL_PREFIX, true));
-        cm.registerCommand(new forcenextCommand("forcenext", GLOBAL_PREFIX, true));
+        cm.registerCommand(new ForcenextCommand("forcenext", GLOBAL_PREFIX, true));
         cm.registerCommand(new DevCommand("dev", GLOBAL_PREFIX, true));
         cm.registerCommand(new FastplayCommand("fastplay", GLOBAL_PREFIX, true));
         cm.registerCommand(new PlayCommand("play", GLOBAL_PREFIX, true));
+        cm.registerCommand(new NextCommand("next", GLOBAL_PREFIX, true));
         cm.registerCommand(new SearchCommand("search", GLOBAL_PREFIX, true));
         cm.registerCommand(new InfosCommand("info", GLOBAL_PREFIX, true));
         cm.registerCommand(new QueueCommand("queue", GLOBAL_PREFIX, true));

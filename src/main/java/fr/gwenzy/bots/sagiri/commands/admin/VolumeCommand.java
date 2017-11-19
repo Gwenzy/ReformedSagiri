@@ -15,6 +15,7 @@ public class VolumeCommand extends Command {
         this.addAuthorizedGroup("Sagiri operator");
         this.setHelpContent("Changes bot's volume");
         this.addNeededArg("volume");
+        this.setNeedVoice(true);
         try {
             this.addAlias("vl");
         } catch (AliasAlreadyExistsException e) {

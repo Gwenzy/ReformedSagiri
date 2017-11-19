@@ -9,12 +9,13 @@ import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedE
 /**
  * Created by Shû~ on 19/11/2017.
  */
-public class forcenextCommand extends Command {
+public class ForcenextCommand extends Command {
 
-    public forcenextCommand(String name, String prefix, boolean enabled) {
+    public ForcenextCommand(String name, String prefix, boolean enabled) {
         super(name, prefix, enabled);
         this.addAuthorizedGroup("Sagiri operator");
         this.setHelpContent("Forces next music to play");
+        this.setNeedVoice(true);
         try {
             this.addAlias("fn");
             this.addAlias("forceskip");
