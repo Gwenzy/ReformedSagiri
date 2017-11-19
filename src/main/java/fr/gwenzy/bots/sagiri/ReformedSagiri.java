@@ -4,6 +4,7 @@ import fr.gwenzy.bots.sagiri.commands.Command;
 import fr.gwenzy.bots.sagiri.commands.CommandManager;
 import fr.gwenzy.bots.sagiri.commands.admin.*;
 import fr.gwenzy.bots.sagiri.commands.everyone.*;
+import fr.gwenzy.bots.sagiri.listeners.AllListener;
 import fr.gwenzy.bots.sagiri.listeners.ReadyListener;
 import fr.gwenzy.bots.sagiri.music.MusicManager;
 import fr.gwenzy.bots.sagiri.ressources.Tokens;
@@ -60,6 +61,7 @@ public class ReformedSagiri {
 
         cb.registerListener(new ReadyListener(true));
         cb.registerListener(new MusicManager());
+        cb.registerListener(new AllListener(true));
 
 
         if(login)
