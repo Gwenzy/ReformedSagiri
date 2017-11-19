@@ -2,6 +2,7 @@ package fr.gwenzy.bots.sagiri.commands.everyone;
 
 import fr.gwenzy.bots.sagiri.ReformedSagiri;
 import fr.gwenzy.bots.sagiri.commands.Command;
+import fr.gwenzy.bots.sagiri.commands.admin.BlockCommand;
 import fr.gwenzy.bots.sagiri.exceptions.*;
 import fr.gwenzy.bots.sagiri.ressources.Tokens;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
@@ -32,6 +33,9 @@ public class DevCommand extends Command {
     public void handle(MessageReceivedEvent event){
         try {
             if(canBeExecuted(event)){
+                if(BlockCommand.isBlocked(event.getAuthor()))
+                    throw new CommandMissingPermissionException(this.getName(), event.getChannel());
+
                 if(getArgs(event.getMessage().getFormattedContent()).length==0) {
                     if (ReformedSagiri.getCommonServers(event.getAuthor()).equals(""))
                         event.getChannel().sendMessage("You must have at least 1 common server with me to send a message to the developer");

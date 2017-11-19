@@ -4,8 +4,7 @@ import fr.gwenzy.bots.sagiri.commands.Command;
 import fr.gwenzy.bots.sagiri.commands.CommandManager;
 import fr.gwenzy.bots.sagiri.commands.admin.*;
 import fr.gwenzy.bots.sagiri.commands.everyone.*;
-import fr.gwenzy.bots.sagiri.listeners.AllListener;
-import fr.gwenzy.bots.sagiri.listeners.ReadyListener;
+import fr.gwenzy.bots.sagiri.listeners.*;
 import fr.gwenzy.bots.sagiri.music.MusicManager;
 import fr.gwenzy.bots.sagiri.ressources.Tokens;
 import sx.blah.discord.api.ClientBuilder;
@@ -29,6 +28,7 @@ public class ReformedSagiri {
 
         cm.registerCommand(new DisableCommand("disable", GLOBAL_PREFIX, true));
         cm.registerCommand(new EnableCommand("enable", GLOBAL_PREFIX, true));
+        cm.registerCommand(new BlockCommand("block", GLOBAL_PREFIX, true));
         cm.registerCommand(new PingCommand("ping", GLOBAL_PREFIX, true));
         cm.registerCommand(new LogoutCommand("logout", GLOBAL_PREFIX, true));
         cm.registerCommand(new StreamCommand("stream", GLOBAL_PREFIX, true));
