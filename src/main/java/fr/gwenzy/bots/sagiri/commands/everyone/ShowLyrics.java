@@ -74,7 +74,8 @@ public class ShowLyrics extends Command {
                     if(!ReformedSagiri.searchAnime || (l.startsWith("Comment: ") || l.startsWith("Dialogue: ") || l.startsWith("\n"))) {
 
                         String nl = l.replaceAll("\\[.*\\]", "").replaceAll("Dialogue: ", "").replaceAll("Comment :", "").replaceAll("\\{(.*?)\\}", "");
-                        nl = nl.split(",")[nl.split(",").length-1];
+                        if(ReformedSagiri.searchAnime)
+                            nl = nl.split(",")[nl.split(",").length-1];
                         nl+="\n";
                         if (txt.length() + (nl).length() <= 2000)
                             txt += nl;
@@ -88,9 +89,14 @@ public class ShowLyrics extends Command {
                     System.out.println(txt2);
                     System.out.println(txt3);
                 }
-                event.getChannel().sendMessage("```"+txt+"```");
-                event.getChannel().sendMessage(!txt2.equals("") ? "```" + txt2 + "```" : "");
-                event.getChannel().sendMessage(!txt3.equals("") ? "```" + txt3 + "```" : "");
+                final String txtF = txt;
+                final String txt2F = txt2;
+                final String txt3F = txt3;
+                RequestBuffer.request(()->event.getChannel().sendMessage("```"+txtF+"```"));
+                if(!txt2F.equals(""))
+                RequestBuffer.request(()->event.getChannel().sendMessage(!txt2F.equals("") ? "```" + txt2F + "```" : ""));
+                if(!txt3F.equals(""))
+                RequestBuffer.request(()->event.getChannel().sendMessage(!txt3F.equals("") ? "```" + txt3F + "```" : ""));
             }
 
         } catch (SagiriException e) {
