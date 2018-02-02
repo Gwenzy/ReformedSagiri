@@ -38,8 +38,9 @@ public class FastplayCommand extends Command {
                 try {
                     MusicManager.loadAndPlay(event.getChannel(), results.get(0).split("!;;!")[1], event.getAuthor().getLongID(), event.getGuild());
 
-                    if(MusicManager.getGuildAudioPlayer(event.getGuild()).isSneakyMode())
+                    if(MusicManager.getGuildAudioPlayer(event.getGuild()).isSneakyMode()) {
                         event.getMessage().delete();
+                    }
                 } catch (Exception e) {
                     event.getChannel().sendMessage("No results");
                 }

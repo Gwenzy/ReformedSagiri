@@ -18,14 +18,16 @@ import sx.blah.discord.handle.obj.IUser;
 public class ReformedSagiri {
     public static IDiscordClient sagiri, test, logged;
     public static CommandManager cm;
-    public static boolean SAGIRI_LOG = false;
+    public static boolean SAGIRI_LOG = true;
     public static final String GLOBAL_PREFIX = SAGIRI_LOG?">":"!";
-
+    public static LyricsCommand lyricsCmd;
+    public static boolean searchAnime;
     public static void main(String[] args){
 
         cm = new CommandManager();
         cm.registerCommand(new HelpCommand("help", GLOBAL_PREFIX, true));
 
+        lyricsCmd = new LyricsCommand("lyrics", GLOBAL_PREFIX, true);
         cm.registerCommand(new DisableCommand("disable", GLOBAL_PREFIX, true));
         cm.registerCommand(new EnableCommand("enable", GLOBAL_PREFIX, true));
         cm.registerCommand(new BlockCommand("block", GLOBAL_PREFIX, true));
@@ -35,6 +37,7 @@ public class ReformedSagiri {
         cm.registerCommand(new DevCommand("", "", true));
         cm.registerCommand(new JoinCommand("join", GLOBAL_PREFIX, true));
         cm.registerCommand(new SneakyCommand("sneaky", GLOBAL_PREFIX, true));
+        cm.registerCommand(new RepeatCommand("repeat", GLOBAL_PREFIX, true));
         cm.registerCommand(new VolumeCommand("volume", GLOBAL_PREFIX, true));
         cm.registerCommand(new ForcenextCommand("forcenext", GLOBAL_PREFIX, true));
         cm.registerCommand(new DevCommand("dev", GLOBAL_PREFIX, true));
@@ -44,7 +47,9 @@ public class ReformedSagiri {
         cm.registerCommand(new SearchCommand("search", GLOBAL_PREFIX, true));
         cm.registerCommand(new InfosCommand("info", GLOBAL_PREFIX, true));
         cm.registerCommand(new QueueCommand("queue", GLOBAL_PREFIX, true));
-
+        cm.registerCommand(lyricsCmd);
+        cm.registerCommand(new ShowLyrics("showlyrics", GLOBAL_PREFIX, true));
+        cm.registerCommand(new AnimeCommand("anime", GLOBAL_PREFIX, true));
 
         test = createClient(Tokens.getTokenAnglophonist(), !SAGIRI_LOG);
         sagiri = createClient(Tokens.getTokenSagiri(), SAGIRI_LOG);

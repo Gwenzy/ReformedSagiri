@@ -26,6 +26,7 @@ public class GuildMusicManager {
   private List<Long> authors;
   private HashMap<Long, List<String>> lastSearches;
   private boolean sneakyMode;
+  private boolean repeatMode;
   /**
    * Track scheduler for the player.
    */
@@ -43,6 +44,7 @@ public class GuildMusicManager {
     authors = new ArrayList<>();
     lastSearches = new HashMap<>();
     this.sneakyMode = false;
+    this.repeatMode = false;
     nextCount = new ArrayList<>();
   }
 
@@ -104,8 +106,10 @@ public class GuildMusicManager {
   public void newTrack(AudioTrack track) {
     this.currentTrack = track;
     this.nextCount = new ArrayList<>();
-    this.currentAuthor = this.authors.get(0);
-    this.authors.remove(0);
+    if(!isRepeatMode() || (isRepeatMode() && !track.getInfo().title.equals(this.currentTrack.getInfo().title))) {
+      this.currentAuthor = this.authors.get(0);
+      this.authors.remove(0);
+    }
 
   }
 
@@ -156,4 +160,12 @@ public class GuildMusicManager {
 
       return pplWantToSkip;
     }
+
+  public boolean isRepeatMode() {
+    return repeatMode;
+  }
+
+  public void setRepeatMode(boolean repeatMode) {
+    this.repeatMode = repeatMode;
+  }
 }

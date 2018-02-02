@@ -45,6 +45,7 @@ public class InfosCommand extends Command{
 
                 }catch(Exception e){
                     event.getChannel().sendMessage("No song is currently playing");
+                    e.printStackTrace();
                 }
             }
         } catch (SagiriException e) {
